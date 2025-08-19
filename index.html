@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Timothy Maina — Creative Developer & Cybersecurity Enthusiast</title>
+  <meta name="description" content="Portfolio of Timothy Maina — Creative developer, cybersecurity enthusiast, and IT specialist from Murang'a, Kenya. Projects, skills, and contact." />
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0bf">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --bg-2: #0e141b;
+      --text: #dbe7ff;
+      --muted: #98a6bd;
+      --neon: #00d9ff;
+      --neon-2: #00ffa3;
+      --card: #0c1218;
+      --border: #142030;
+      --shadow: 0 10px 30px rgba(0, 217, 255, 0.08), 0 4px 16px rgba(0, 255, 163, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 80% -20%, rgba(0,217,255,.08), transparent),
+                  radial-gradient(1000px 700px at -10% 30%, rgba(0,255,163,.06), transparent),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ======= Utilities ======= */
+    .container { width: min(1140px, 92vw); margin: 0 auto; }
+    .grid { display: grid; gap: 1.2rem; }
+    .btn {
+      display: inline-block; padding: .9rem 1.1rem; border-radius: 14px; border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      color: var(--text); text-decoration: none; font-weight: 600; letter-spacing: 0.2px;
+      box-shadow: var(--shadow); backdrop-filter: blur(6px);
+      transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); border-color: rgba(0,217,255,.5); box-shadow: 0 12px 32px rgba(0,217,255,.15); }
+    .btn.primary { position: relative; border-color: rgba(0,217,255,.5); }
+    .btn.primary::after {
+      content: ""; position: absolute; inset: -1px; border-radius: 14px;
+      padding: 1px; background: linear-gradient(135deg, var(--neon), var(--neon-2)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; opacity: .6; pointer-events: none;
+    }
+
+    h1, h2, h3 { line-height: 1.15; margin: 0 0 .7rem; }
+    h1 { font-size: clamp(2rem, 4vw + 1rem, 3.4rem); font-weight: 800; }
+    h2 { font-size: clamp(1.4rem, 2vw + .8rem, 2.2rem); font-weight: 700; }
+    p.lead { font-size: clamp(1.05rem, .8vw + .9rem, 1.2rem); color: var(--muted); }
+
+    section { padding: 88px 0; position: relative; }
+
+    /* ======= Nav ======= */
+    header {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(2,8,23,.7), rgba(2,8,23,.3)); border-bottom: 1px solid rgba(20,32,48,.55);
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+    .brand { display: flex; align-items: center; gap: .7rem; font-weight: 800; letter-spacing: .4px; }
+    .brand .logo { width: 28px; height: 28px; border-radius: 8px; background:
+      conic-gradient(from 180deg, var(--neon), var(--neon-2), var(--neon));
+      filter: drop-shadow(0 0 6px rgba(0, 217, 255, .55)); }
+    .links { display: flex; align-items: center; gap: .8rem; }
+    .links a { color: var(--muted); text-decoration: none; font-weight: 600; padding: .5rem .7rem; border-radius: 10px; }
+    .links a:hover { color: var(--text); background: rgba(255,255,255,.04); }
+
+    /* ======= Hero ======= */
+    .hero { padding: 110px 0 80px; }
+    .hero-wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 2rem; align-items: center; }
+    .badge { display: inline-flex; align-items: center; gap: .5rem; font-size: .9rem; color: var(--neon);
+      border: 1px solid rgba(0,217,255,.35); padding: .35rem .6rem; border-radius: 999px; background: rgba(0,217,255,.06);
+      box-shadow: inset 0 0 30px rgba(0,217,255,.08); }
+    .hero .cta { display: flex; gap: .8rem; margin-top: 1.2rem; flex-wrap: wrap; }
+
+    /* 3D cube */
+    .stage { perspective: 900px; height: 360px; display: grid; place-items: center; }
+    .cube { position: relative; width: 220px; height: 220px; transform-style: preserve-3d; animation: rotate 18s linear infinite; }
+    .cube .side { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,217,255,.1), rgba(0,255,163,.08)); border: 1px solid rgba(0,217,255,.35);
+      border-radius: 18px; box-shadow: 0 0 40px rgba(0,217,255,.12) inset; backdrop-filter: blur(4px); }
+    .front  { transform: translateZ(110px); }
+    .back   { transform: rotateY(180deg) translateZ(110px); }
+    .right  { transform: rotateY(90deg) translateZ(110px); }
+    .left   { transform: rotateY(-90deg) translateZ(110px); }
+    .top    { transform: rotateX(90deg) translateZ(110px); }
+    .bottom { transform: rotateX(-90deg) translateZ(110px); }
+    @keyframes rotate {
+      0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+      100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cube { animation: none; }
+    }
+
+    /* ======= Cards ======= */
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border: 1px solid var(--border); border-radius: 18px; padding: 1.2rem; box-shadow: var(--shadow);
+      transform-style: preserve-3d; transform: translateZ(0); will-change: transform;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .card:hover { transform: translateY(-4px) rotateX(2deg) rotateY(-2deg); border-color: rgba(0,217,255,.45); box-shadow: 0 14px 36px rgba(0, 217, 255, .12); }
+
+    .section-head { display: flex; align-items: end; justify-content: space-between; margin-bottom: 1rem; gap: 1rem; }
+    .section-head p { margin: 0; color: var(--muted); }
+
+    /* ======= About ======= */
+    .about-grid { grid-template-columns: 1.1fr .9fr; }
+
+    /* ======= Projects ======= */
+    .projects { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+    .tag { font-size: .8rem; padding: .22rem .5rem; border: 1px solid rgba(255,255,255,.08); border-radius: 999px; color: var(--muted); }
+
+    /* ======= Skills ======= */
+    .skills { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+    .meter { height: 9px; background: #0a1219; border-radius: 999px; overflow: hidden; border: 1px solid #132031; }
+    .meter > i { display: block; height: 100%; background: linear-gradient(90deg, var(--neon), var(--neon-2)); width: var(--val, 60%); }
+
+    /* ======= Experience ======= */
+    .timeline { position: relative; }
+    .timeline::before { content: ""; position: absolute; left: 14px; top: 0; bottom: 0; width: 2px; background: linear-gradient(var(--neon), transparent); opacity: .3; }
+    .t-item { position: relative; padding-left: 48px; margin: 1rem 0; }
+    .t-item::before { content: ""; position: absolute; left: 7px; top: .45rem; width: 14px; height: 14px; border-radius: 50%; background: var(--neon); box-shadow: 0 0 14px rgba(0,217,255,.6); }
+
+    /* ======= Contact ======= */
+    form { display: grid; gap: .8rem; }
+    input, textarea {
+      width: 100%; padding: .9rem 1rem; background: #0a1219; border: 1px solid #132031; color: var(--text);
+      border-radius: 14px; outline: none; transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    input:focus, textarea:focus { border-color: rgba(0,217,255,.55); box-shadow: 0 0 0 3px rgba(0,217,255,.15); }
+    textarea { min-height: 130px; resize: vertical; }
+
+    /* ======= Footer ======= */
+    footer { border-top: 1px solid rgba(255,255,255,.06); padding: 28px 0; color: var(--muted); font-size: .95rem; }
+
+    /* ======= Responsive ======= */
+    @media (max-width: 980px) {
+      .hero-wrap { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .links { display: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Timothy Maina",
+    "jobTitle": "Creative Developer & Cybersecurity Enthusiast",
+    "address": {"@type": "PostalAddress", "addressCountry": "KE", "addressRegion": "Murang'a"},
+    "url": "https://your-github-pages-url",
+    "sameAs": [
+      "https://github.com/your-username",
+      "https://www.linkedin.com/in/your-profile",
+      "https://www.tiktok.com/@your-handle"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <span class="logo" aria-hidden="true"></span>
+          <span>Timothy Maina</span>
+        </div>
+        <div class="links" role="navigation" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div>
+          <span class="badge">👋 Hello — Murang'a, Kenya</span>
+          <h1>I'm <span style="background:linear-gradient(90deg,var(--neon),var(--neon-2));-webkit-background-clip:text;background-clip:text;color:transparent">Timothy Maina</span><br>Creative Developer & Cybersecurity Enthusiast</h1>
+          <p class="lead">I build elegant solutions, secure systems, and bring ideas to life through code and design. Passionate about Android, Django, networking, and visual storytelling.</p>
+          <div class="cta">
+            <a class="btn primary" href="#projects">View My Work</a>
+            <a class="btn" href="#contact">Hire Me</a>
+          </div>
+        </div>
+        <div class="stage" aria-hidden="true">
+          <div class="cube">
+            <div class="side front"></div>
+            <div class="side back"></div>
+            <div class="side right"></div>
+            <div class="side left"></div>
+            <div class="side top"></div>
+            <div class="side bottom"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>About Me</h2>
+          <p>Blending creativity with cybersecurity and robust engineering.</p>
+        </div>
+        <div class="grid about-grid">
+          <div class="card">
+            <p>
+              I am a developer and IT specialist focused on <strong>Programming</strong>, <strong>Graphic Design</strong>, and <strong>Cybersecurity</strong>.
+              Experienced with <strong>Android (Java, Android Studio)</strong>, <strong>Django</strong>, <strong>XAMPP</strong>, and practical <strong>switch/server configuration</strong> through my internship at <strong>TechSource</strong>.
+            </p>
+            <p>
+              Tools I use: <strong>Wireshark</strong>, <strong>Nmap</strong>, Git & GitHub, and clean design workflows. I care about ethical tech, creativity, and sustainable making.
+            </p>
+          </div>
+          <div class="grid">
+            <div class="card">
+              <h3>Quick Facts</h3>
+              <ul>
+                <li>📍 Based in Murang'a Town, Kenya</li>
+                <li>🛠 Currently hands-on with networking, trunking & cabinet assembly</li>
+                <li>📱 Android apps: Calculator & Marks Average Calculator</li>
+                <li>🌐 Web: Django projects & XAMPP setups</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>What I’m Exploring</h3>
+              <p>Building 3D interactive experiences, improving SOC-style skills, and storytelling with African heritage themes on social platforms.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p>Selected work — more on GitHub.</p>
+        </div>
+        <div class="grid projects">
+          <article class="card tilt">
+            <h3>Android Calculator</h3>
+            <p>A clean calculator app built with Java and Android Studio.</p>
+            <div class="tags">
+              <span class="tag">Android</span><span class="tag">Java</span><span class="tag">UI/UX</span>
+            </div>
+            <p><a class="btn" href="https://github.com/your-username/your-calculator" target="_blank" rel="noopener">View Code</a></p>
+          </article>
+
+          <article class="card tilt">
+            <h3>Marks Average Calculator</h3>
+            <p>Android app to compute averages with input validation and shareable results.</p>
+            <div class="tags">
+              <span class="tag">Android</span><span class="tag">Java</span><span class="tag">Validation</span>
+            </div>
+            <p><a class="btn" href="https://github.com/your-username/marks-average" target="_blank" rel="noopener">View Code</a></p>
+          </article>
+
+          <article class="card tilt">
+            <h3>Django Portfolio</h3>
+            <p>Personal website backend with projects, blog, and contact form.</p>
+            <div class="tags">
+              <span class="tag">Django</span><span class="tag">Python</span><span class="tag">SQLite</span>
+            </div>
+            <p><a class="btn" href="https://github.com/your-username/django-portfolio" target="_blank" rel="noopener">View Code</a></p>
+          </article>
+
+          <article class="card tilt">
+            <h3>Network Lab</h3>
+            <p>Home lab notes on switch configuration, VLANs, and server setup.</p>
+            <div class="tags">
+              <span class="tag">Networking</span><span class="tag">Switch</span><span class="tag">Servers</span>
+            </div>
+            <p><a class="btn" href="https://github.com/your-username/network-lab" target="_blank" rel="noopener">Docs</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <h2>Skills</h2>
+          <p>Core technical strengths and tools.</p>
+        </div>
+        <div class="grid skills">
+          <div class="card">
+            <h3>Programming</h3>
+            <p>Java, Python, Django</p>
+            <div class="meter" aria-label="Skill level"><i style="--val: 85%"></i></div>
+          </div>
+          <div class="card">
+            <h3>Cybersecurity</h3>
+            <p>Wireshark, Nmap, Threat awareness</p>
+            <div class="meter"><i style="--val: 70%"></i></div>
+          </div>
+          <div class="card">
+            <h3>IT & Networking</h3>
+            <p>Switch & Server Configuration, Trunking, Cabinets</p>
+            <div class="meter"><i style="--val: 80%"></i></div>
+          </div>
+          <div class="card">
+            <h3>Design</h3>
+            <p>Graphics, Branding, Storytelling</p>
+            <div class="meter"><i style="--val: 75%"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <h2>Experience</h2>
+          <p>Hands-on learning and impact.</p>
+        </div>
+        <div class="timeline">
+          <div class="t-item card">
+            <h3>IT Intern — TechSource</h3>
+            <p><strong>Ministry placements:</strong> Energy & Petroleum (Kawi) → Transport & Roads</p>
+            <ul>
+              <li>Cable pulling, trunking, and cabinet assembling</li>
+              <li>Switch configuration and server setup</li>
+              <li>Documentation and tidy cable management</li>
+            </ul>
+          </div>
+          <div class="t-item card">
+            <h3>Data Ops — Mathioya Constituency Bursary Program</h3>
+            <ul>
+              <li>Data collection, entry, and sorting for public service</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p>Let’s connect and create the future together.</p>
+        </div>
+        <div class="grid" style="grid-template-columns: 1.2fr .8fr; gap: 1.2rem;">
+          <div class="card">
+            <form action="mailto:timothymaina@example.com" method="post" enctype="text/plain">
+              <label>
+                <span>Name</span>
+                <input name="name" type="text" placeholder="Your name" required>
+              </label>
+              <label>
+                <span>Email</span>
+                <input name="email" type="email" placeholder="you@example.com" required>
+              </label>
+              <label>
+                <span>Message</span>
+                <textarea name="message" placeholder="Tell me about your project" required></textarea>
+              </label>
+              <button class="btn primary" type="submit">Send Message</button>
+            </form>
+          </div>
+          <div class="card">
+            <h3>Find Me</h3>
+            <p>
+              <strong>Email:</strong> <a href="mailto:timothymaina@example.com">timothymaina@example.com</a><br>
+              <strong>GitHub:</strong> <a href="https://github.com/your-username" target="_blank" rel="noopener">github.com/your-username</a><br>
+              <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">linkedin.com/in/your-profile</a><br>
+              <strong>TikTok:</strong> <a href="https://www.tiktok.com/@your-handle" target="_blank" rel="noopener">@your-handle</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+      <span>© <span id="year"></span> Timothy Maina. All rights reserved.</span>
+      <div style="display:flex;gap:.6rem;align-items:center;">
+        <a class="btn" href="#about">About</a>
+        <a class="btn" href="#projects">Projects</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Lightweight 3D tilt on cards
+    const tilts = document.querySelectorAll('.tilt');
+    const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
+    tilts.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        const rotX = clamp(-py * 8, -8, 8);
+        const rotY = clamp(px * 8, -8, 8);
+        card.style.transform = `translateY(-4px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  </script>
+</body>
+</html>
