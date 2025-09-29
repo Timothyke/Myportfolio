@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title> Timothy Maina — Creative Developer </title>
-  <meta name="description" content="Portfolio of Timothy Maina — Creative developer, and IT specialist from Kenya. Projects, skills, CV, and contact." />
+  <meta name="description" content="Portfolio of Timothy Maina — Creative developer, IT specialist, and cybersecurity enthusiast from Kenya." />
+  <meta name="keywords" content="Timothy Maina, developer Kenya, IT specialist, web development, Android app, cybersecurity, Django, portfolio" />
+  <title>Timothy Maina — Creative Developer & IT Specialist</title>
+
+  <!-- Preload critical assets -->
+  <link rel="preload" as="image" href="images/profile.jpg">
+
   <style>
     :root {
       --bg: #080c12;
@@ -14,75 +19,298 @@
       --neon-2: #00ffa3;
       --card: #0d141c;
       --border: #1b2838;
+      --shadow: 0 8px 30px rgba(0, 217, 255, 0.15);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(circle at top right, rgba(0,217,255,0.08), transparent),
-                  radial-gradient(circle at bottom left, rgba(0,255,163,0.08), transparent),
-                  var(--bg);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: 
+        radial-gradient(circle at top right, rgba(0, 217, 255, 0.08), transparent),
+        radial-gradient(circle at bottom left, rgba(0, 255, 163, 0.08), transparent),
+        var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.7;
+      min-height: 100vh;
       overflow-x: hidden;
+      transition: background 0.5s ease;
     }
-    header {
-      position: sticky; top: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px);
-      padding: 0.7rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.08);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    header h1 { font-size: 2.8rem; font-weight: 700; color: var(--neon); }
-    nav a {
-      color: var(--muted); margin-left: 1.2rem; text-decoration: none; font-weight: 600;
-    }
-    nav a:hover { color: var(--text); }
-    section { padding: 80px 10%; }
-    h2 { font-size: 2rem; margin-bottom: 1rem; color: var(--neon); }
-    p.lead { color: var(--muted); font-size: 1.1rem; }
-    .hero { text-align: center; }
-    .hero img {
-      width: 180px; height: 180px; border-radius: 50%;
-      border: 4px solid var(--neon); box-shadow: 0 0 30px var(--neon);
-    }
-    .btn {
-      display: inline-block; margin: 1rem 0.5rem 0; padding: 0.7rem 1.2rem;
-      border-radius: 10px; border: 1px solid var(--neon);
-      background: linear-gradient(90deg, var(--neon), var(--neon-2));
-      color: #000; font-weight: 700; text-decoration: none; transition: 0.3s;
-    }
-    .btn:hover { transform: scale(1.05); }
-    .card {
-      background: var(--card); padding: 1.2rem; border-radius: 12px;
-      margin: 1rem 0; border: 1px solid var(--border);
-    }
-    .skills div { margin: 0.6rem 0; }
-    .meter {
-      height: 10px; background: #0a1219; border-radius: 999px; overflow: hidden;
-    }
-    .meter > span {
-      display: block; height: 100%; background: linear-gradient(90deg, var(--neon), var(--neon-2));
-    }
-    .projects, .experience { display: grid; gap: 1rem; }
-    iframe {
-      width: 100%; height: 500px; border: none; margin-top: 1rem;
-    }
-    footer {
-      background: rgba(0,0,0,0.7); padding: 1rem; text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      font-size: 0.9rem; color: var(--muted);
-    }
-    /* Background Animation */
+
+    /* Animated Grid Background */
     body::before {
-      content:""; position:fixed; top:0; left:0; right:0; bottom:0; z-index:-1;
-      background: radial-gradient(circle, rgba(0,217,255,0.15) 1px, transparent 1px);
-      background-size: 80px 80px; animation: move 12s linear infinite;
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: -1;
+      background-image: 
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+      opacity: 0.3;
+      animation: gridMove 15s linear infinite;
     }
-    @keyframes move {
-      from { background-position: 0 0; }
-      to { background-position: 80px 80px; }
+
+    @keyframes gridMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 80px 80px; }
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(8, 12, 18, 0.85);
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--neon), var(--neon-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    nav a {
+      color: var(--muted);
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.05rem;
+      position: relative;
+      padding: 0.3rem 0;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: var(--text);
+      outline: none;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--neon);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      padding: 80px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--neon);
+      font-weight: 700;
+    }
+
+    p.lead {
+      color: var(--muted);
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 5% 60px;
+    }
+
+    .hero img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 3px solid var(--neon);
+      box-shadow: 0 0 40px rgba(0, 217, 255, 0.4);
+      transition: transform 0.4s ease;
+    }
+
+    .hero img:hover {
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .hero h2 {
+      margin-top: 1.2rem;
+      font-size: 2.5rem;
+      color: white;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 1rem 0.8rem 0;
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--neon);
+      background: linear-gradient(90deg, var(--neon), var(--neon-2));
+      color: #000;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(0, 217, 255, 0.2);
+    }
+
+    .btn:hover,
+    .btn:focus {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 217, 255, 0.35);
+      outline: none;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--neon);
+      border: 1px solid var(--neon);
+    }
+
+    .btn.secondary:hover {
+      background: rgba(0, 217, 255, 0.1);
+    }
+
+    .card {
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: 14px;
+      margin: 1rem 0;
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 35px rgba(0, 217, 255, 0.2);
+    }
+
+    .skills div {
+      margin: 1rem 0;
+    }
+
+    .skills strong {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    .meter {
+      height: 10px;
+      background: #0a1219;
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.6);
+    }
+
+    .meter > span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--neon), var(--neon-2));
+      border-radius: 999px;
+      transition: width 1.2s ease;
+    }
+
+    .projects, .experience {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    iframe {
+      width: 100%;
+      height: 600px;
+      border-radius: 12px;
+      margin-top: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 217, 255, 0.1);
+      border: 1px solid var(--border);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+      background: rgba(0, 0, 0, 0.6);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    footer a {
+      color: var(--neon);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+
+      header h1 {
+        font-size: 1.7rem;
+      }
+
+      nav a {
+        margin-left: 1rem;
+        font-size: 0.95rem;
+      }
+
+      section {
+        padding: 60px 5%;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.95rem;
+      }
+
+      iframe {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .projects, .experience {
+        grid-template-columns: 1fr;
+      }
+
+      .hero img {
+        width: 140px;
+        height: 140px;
+      }
     }
   </style>
 </head>
 <body>
+
 <header>
   <h1>Timothy Maina</h1>
   <nav>
@@ -96,69 +324,114 @@
 </header>
 
 <section class="hero">
- <img src="images/profile.jpg" alt="Timothy Maina">
+  <img src="images/profile.jpg" alt="Timothy Maina - Creative Developer" loading="lazy">
   <h2>Creative Developer</h2>
   <p class="lead">I design secure systems, build elegant code, and bring creativity into technology.</p>
   <a href="#projects" class="btn">View My Work</a>
-  <a href="#contact" class="btn">Hire Me</a>
+  <a href="#contact" class="btn secondary">Hire Me</a>
 </section>
 
 <section id="about">
   <h2>About Me</h2>
   <div class="card">
-    <p>I work as a developer and IT specialist with an emphasis on cybersecurity, programming, graphic design, and artificial intelligence (AI).
-    knowledgeable about Django, XAMPP, Android (Java, Android Studio), and networking (configuring switch/server).</p>
+    <p>I'm a full-stack developer and IT specialist passionate about cybersecurity, AI, networking, and application development. Experienced with Django, XAMPP, Android (Java, Android Studio), and server infrastructure setup. I combine technical precision with creative thinking to solve real-world problems.</p>
   </div>
 </section>
 
 <section id="skills">
   <h2>Skills</h2>
   <div class="skills">
-    <div><strong>Programming</strong><div class="meter"><span style="width:85%"></span></div></div>
-    <div><strong>Cybersecurity</strong><div class="meter"><span style="width:70%"></span></div></div>
-    <div><strong>Networking</strong><div class="meter"><span style="width:80%"></span></div></div>
-    <div><strong>Design</strong><div class="meter"><span style="width:75%"></span></div></div>
+    <div>
+      <strong>Web Development</strong>
+      <div class="meter"><span style="width:85%"></span></div>
+    </div>
+    <div>
+      <strong>Graphic Design & Branding</strong>
+      <div class="meter"><span style="width:80%"></span></div>
+    </div>
+    <div>
+      <strong>Android App Development</strong>
+      <div class="meter"><span style="width:75%"></span></div>
+    </div>
+    <div>
+      <strong>Cybersecurity & Networking</strong>
+      <div class="meter"><span style="width:70%"></span></div>
+    </div>
   </div>
 </section>
 
 <section id="projects">
   <h2>Projects</h2>
   <div class="projects">
-    <div class="card"><h3>CyberGuard 2.0</h3><a href="https://github.com/Timothyke/cyberguard2.0" class="btn" target="_blank">View Code</a></div>
-    <div class="card"><h3>Marks Average Calculator</h3><a href="https://github.com/Timothyke/Android-marks-calculator" class="btn" target="_blank">View Code</a></div>
-    <div class="card"><h3>DailyHero App</h3><a href="https://github.com/Timothyke/DailyHeroApp" class="btn" target="_blank">View Code</a></div>
-
+    <div class="card">
+      <h3>CyberGuard 2.0</h3>
+      <p>A network security tool for monitoring threats using Python and Django.</p>
+      <a href="https://github.com/Timothyke/cyberguard2.0" class="btn" target="_blank" rel="noopener noreferrer">View Code</a>
+    </div>
+    <div class="card">
+      <h3>Marks Average Calculator</h3>
+      <p>An Android app built in Java to help students calculate GPA and averages.</p>
+      <a href="https://github.com/Timothyke/Android-marks-calculator" class="btn" target="_blank" rel="noopener noreferrer">View Code</a>
+    </div>
+    <div class="card">
+      <h3>DailyHero App</h3>
+      <p>Productivity app to track daily goals and achievements.</p>
+      <a href="https://github.com/Timothyke/DailyHeroApp" class="btn" target="_blank" rel="noopener noreferrer">View Code</a>
+    </div>
   </div>
 </section>
 
 <section id="experience">
   <h2>Experience</h2>
   <div class="experience">
-    <div class="card"><h3>IT Intern — TechSource</h3><p>Configuring switches, pulling cables, setting up servers, and trunking.</p></div>
-    <div class="card"><h3>Data Entry and collection — Mathioya Constituency Bursary</h3><p>Data collection, entry, and sorting for public service.</p></div>
-    
+    <div class="card">
+      <h3>IT Intern — TechSource</h3>
+      <p>Configured switches, pulled cables, set up servers, and managed VLAN trunking for enterprise clients.</p>
+    </div>
+    <div class="card">
+      <h3>Data Entry & Collection — Mathioya Constituency Bursary</h3>
+      <p>Collected, entered, and organized educational funding data for public transparency and reporting.</p>
+    </div>
   </div>
 </section>
 
 <section id="cv">
   <h2>My CV</h2>
-  <a href="files/Timothy_Maina_CV.pdf" download class="btn">Download CV</a>
-<iframe src="files/Timothy_Maina_CV.pdf"></iframe>
+  <a href="files/Timothy_Maina_CV.pdf" download class="btn">Download CV (PDF)</a>
+  <p style="color:var(--muted);margin:1rem 0;">Preview below:</p>
+  <iframe src="files/Timothy_Maina_CV.pdf" title="Timothy Maina Resume"></iframe>
 </section>
 
 <section id="contact">
   <h2>Contact</h2>
   <div class="card">
-    <p>Email: <a href="mailto:timothymaina030@gmail.com">timothymaina030@gmail.com</a></p>
-    <p>GitHub: <a href="https://github.com/Timothyke" target="_blank">github.com/Timothyke</a></p>
+    <p><strong>Email:</strong> <a href="mailto:timothymaina030@gmail.com">timothymaina030@gmail.com</a></p>
+    <p><strong>GitHub:</strong> <a href="https://github.com/Timothyke" target="_blank" rel="noopener noreferrer">github.com/Timothyke</a></p>
+    <p><strong>Location:</strong> Nairobi, Kenya</p>
   </div>
 </section>
 
 <footer>
   <p>© <span id="year"></span> Timothy Maina. All Rights Reserved.</p>
+  <p>Built with HTML, CSS & ❤️ from Kenya</p>
 </footer>
+
 <script>
+  // Set current year
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Animate skill bars when scrolled into view
+  const meters = document.querySelectorAll('.meter > span');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.width = entry.target.style.width; // Trigger reflow
+      }
+    });
+  }, { threshold: 0.5 });
+
+  meters.forEach(bar => observer.observe(bar));
 </script>
+
 </body>
-</html> 
+</html>
